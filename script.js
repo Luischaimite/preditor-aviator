@@ -1,32 +1,79 @@
-// CONFIGURAÇÃO MANUAL
-const MEU_WHATSAPP = "258872343542"; // COLOCA O TEU NÚMERO AQUI (com 258)
-const SENHAS_VALIDAS = ["VIP2026", "MARRACUENE", "AV1ATOR"]; // Senhas que vais vender
+// CONFIGURAÇÕES DO DONO (VOCÊ)
+const MEU_WHATSAPP = "258872343542"; 
+const SENHAS_VALIDAS = ["VIP2026", "MOZ87", "PRO"];
 
+let historico = [];
+
+// FUNÇÃO WHATSAPP
 function enviarPedidoWhatsapp() {
     const numCliente = document.getElementById('num_cliente').value;
-    const valor = "100 MT";
-    
-    if (numCliente.length < 9) {
-        alert("Por favor, coloca um número válido.");
-        return;
-    }
+    if (numCliente.length < 9) return alert("Insira o seu número.");
 
-    // Cria a mensagem automática para o teu WhatsApp
-    const mensagem = `Olá! Quero comprar o acesso ao Preditor Aviator.%0A%0A*Dados do Pedido:*%0A- Cliente: ${numCliente}%0A- Valor: ${valor}%0A%0AFiz o pagamento, por favor envie-me a senha de acesso.`;
-    
-    // Abre o WhatsApp com a tua conversa
-    const url = `https://wa.me/${MEU_WHATSAPP}?text=${mensagem}`;
-    window.open(url, '_blank');
+    const msg = `Olá! Acabei de pagar 100MT para o acesso ao Preditor.%0ACliente: ${numCliente}%0APor favor, envie-me a Chave VIP.`;
+    window.open(`https://wa.me/${MEU_WHATSAPP}?text=${msg}`, '_blank');
 }
 
+// FUNÇÃO DE LOGIN
 function verificarSenhaManual() {
-    const senhaInserida = document.getElementById('chave_acesso').value.toUpperCase();
-    
-    if (SENHAS_VALIDAS.includes(senhaInserida)) {
+    const senha = document.getElementById('chave_acesso').value.toUpperCase();
+    if (SENHAS_VALIDAS.includes(senha)) {
         localStorage.setItem('acesso_liberado', 'true');
-        alert("Acesso Confirmado! Boa sorte.");
-        window.location.href = "index.html";
+        window.location.href = "./index.html";
     } else {
-        alert("Senha incorrecta. Fala com o administrador no WhatsApp.");
+        alert("Senha Incorrecta!");
     }
+}
+
+// LÓGICA DO PREDITOR (Tradução do seu Python)
+function adicionarDado() {
+    const input = document.getElementById('valor');
+    const valor = parseFloat(input.value);
+
+    if (isNaN(valor)) return;
+
+    historico.push(valor);
+    if (historico.length > 15) historico.shift();
+    input.value = '';
+    
+    atualizarPainel();
+}
+
+function atualizarPainel() {
+    const sElement = document.getElementById('sinal');
+    const pFill = document.getElementById('prob-fill');
+    const tElement = document.getElementById('tendencia');
+    const lista = document.getElementById('lista-resultados');
+
+    const ultimos5 = historico.slice(-5);
+    const baixos = ultimos5.filter(x => x < 2.0).length;
+
+    if (historico.length < 3) {
+        sElement.innerText = "COLETE MAIS DADOS";
+        pFill.style.width = "20%";
+        pFill.style.backgroundColor = "#888";
+    } 
+    else if (baixos >= 4) {
+        // Lógica de Saturação: Muita perda = Chance de Ganho
+        sElement.innerText = "ENTRADA CONFIRMADA (Alvo 1.5x)";
+        sElement.style.color = "#4caf50";
+        pFill.style.width = "92%";
+        pFill.style.backgroundColor = "#4caf50";
+        tElement.innerText = "ALTA PROBABILIDADE";
+    } 
+    else {
+        sElement.innerText = "AGUARDAR PADRÃO";
+        sElement.style.color = "#ff9800";
+        pFill.style.width = "35%";
+        pFill.style.backgroundColor = "#ff9800";
+        tElement.innerText = "MERCADO OSCILANTE";
+    }
+
+    lista.innerHTML = historico.slice().reverse().map(h => 
+        `<span class="badge" style="color:${h >= 2 ? '#4caf50' : '#e91e63'}">${h.toFixed(2)}x</span>`
+    ).join('');
+}
+
+function fazerLogout() {
+    localStorage.removeItem('acesso_liberado');
+    window.location.href = "./login.html";
 }

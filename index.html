@@ -1,21 +1,46 @@
-<div class="card login-box">
-    <h2 class="pro">LIBERAR PREDITOR</h2>
-    <p>Pagamento via e-Mola ou M-Pesa</p>
-    
-    <div class="input-group" style="margin-bottom: 15px;">
-        <label>Teu Número de Telefone:</label>
-        <input type="number" id="num_cliente" placeholder="Ex: 872343542" style="width: 100%;">
-    </div>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Aviator Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Proteção: Se não logou, volta para o login
+        if (localStorage.getItem('acesso_liberado') !== 'true') {
+            window.location.href = "./login.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>PAINEL DE SINAIS</h2>
+            <button onclick="fazerLogout()" class="btn-logout">Sair</button>
+        </div>
 
-    <button class="btn-acessar" onclick="enviarPedidoWhatsapp()" style="background: #25D366; color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer;">
-        PAGAR AGORA (VIA WHATSAPP)
-    </button>
-    
-    <hr style="border: 0.5px solid #333; margin: 20px 0;">
-    
-    <div class="input-group">
-        <label>Já tens a senha? Introduz aqui:</label>
-        <input type="text" id="chave_acesso" placeholder="Digita a senha que recebeste" style="width: 100%;">
-        <button onclick="verificarSenhaManual()" style="margin-top: 10px; width: 100%; background: #4caf50; color: white; border: none; padding: 10px; border-radius: 8px;">ENTRAR NO PREDITOR</button>
+        <div class="card main-card">
+            <div id="status-box">
+                <p>STATUS DO MERCADO:</p>
+                <h3 id="sinal">AGUARDANDO DADOS...</h3>
+                <p>TENDÊNCIA: <span id="tendencia">---</span></p>
+            </div>
+
+            <div class="progress-container">
+                <div id="prob-fill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div class="card input-card">
+            <input type="number" id="valor" step="0.01" placeholder="Último Multiplicador (Ex: 1.50)">
+            <button onclick="adicionarDado()">ANALISAR</button>
+        </div>
+
+        <div class="card history-card">
+            <p>HISTÓRICO RECENTE:</p>
+            <div id="lista-resultados"></div>
+        </div>
     </div>
-</div>
+    <script src="script.js"></script>
+</body>
+</html>
