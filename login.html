@@ -8,20 +8,27 @@
 </head>
 <body>
     <div class="container">
+        <div class="banner-pro">
+            <div class="banner-content">
+                <span class="badge-vip">SISTEMA MOZ VIP</span>
+                <h1>AVIATOR <span style="color:#ff0044">PRO</span></h1>
+                <p>92% de Assertividade em Tempo Real</p>
+            </div>
+        </div>
+
         <div class="card login-box">
-            <h1 class="pro">AVIATOR <span style="color:#e91e63">PRO</span></h1>
-            <p>Escolha o seu plano de acesso:</p>
+            <p style="margin-top:0; font-weight:bold;">ESCOLHA O SEU PLANO:</p>
 
             <div class="planos-container">
                 <div class="plano-card active" onclick="selecionarPlano('Semanal', 100)" id="plano-semanal">
                     <h3>SEMANAL</h3>
                     <p class="preco">100 MT</p>
-                    <span>7 Dias</span>
+                    <span class="info-plano">7 Dias de Sinais</span>
                 </div>
                 <div class="plano-card" onclick="selecionarPlano('Mensal', 300)" id="plano-mensal">
                     <h3>MENSAL</h3>
                     <p class="preco">300 MT</p>
-                    <span>30 Dias</span>
+                    <span class="info-plano">30 Dias + Bónus</span>
                 </div>
             </div>
 
@@ -29,16 +36,17 @@
             <input type="hidden" id="valor_escolhido" value="100">
 
             <div class="input-group">
-                <label>Seu Número (M-Pesa/e-Mola):</label>
-                <input type="number" id="num_cliente" placeholder="87XXXXXXX">
+                <label>Número M-Pesa / e-Mola:</label>
+                <input type="number" id="num_cliente" placeholder="86/87XXXXXXX">
             </div>
 
-            <button class="btn-whatsapp" onclick="enviarPedidoWhatsapp()">PAGAR VIA WHATSAPP</button>
+            <button class="btn-whatsapp" onclick="enviarPedidoWhatsapp()">
+                SOLICITAR ACESSO VIA WHATSAPP
+            </button>
             
-            <hr style="border: 0.5px solid #333; margin: 20px 0;">
+            <div class="divider">OU ENTRE COM A CHAVE</div>
             
             <div class="input-group">
-                <label>Já tem a senha?</label>
                 <input type="text" id="chave_acesso" placeholder="Introduza a Chave VIP">
                 <button class="btn-acessar" onclick="verificarSenhaManual()">LIBERAR PREDITOR</button>
             </div>
