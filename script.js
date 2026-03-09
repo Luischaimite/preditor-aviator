@@ -1,35 +1,30 @@
-function atualizarPainel() {
-    const sElement = document.getElementById('sinal');
-    const pFill = document.getElementById('prob-fill');
-    const tElement = document.getElementById('tendencia');
-    const lista = document.getElementById('lista-resultados');
+function selecionarPlano(nome, valor) {
+    // Atualiza os campos escondidos
+    document.getElementById('plano_escolhido').value = nome;
+    document.getElementById('valor_escolhido').value = valor;
 
-    if (historico.length < 3) {
-        sElement.innerText = "INSIRA + DADOS";
-        return;
-    }
+    // Muda o visual dos cards
+    document.getElementById('plano-semanal').classList.remove('active');
+    document.getElementById('plano-mensal').classList.remove('active');
 
-    // Lógica de Cálculo da Próxima Vela
-    const ultimos = historico.slice(-3);
-    const media = ultimos.reduce((a, b) => a + b, 0) / ultimos.length;
-    
-    // Se saíram muitas velas baixas, o algoritmo projeta uma recuperação
-    let previsao;
-    if (media < 1.5) {
-        previsao = (Math.random() * (2.10 - 1.50) + 1.50).toFixed(2);
-        sElement.innerHTML = `PRÓXIMA VELA: <span style="color:#4caf50">${previsao}x</span>`;
-        pFill.style.width = "94%";
-        pFill.style.backgroundColor = "#4caf50";
-        tElement.innerText = "SINAL DE ENTRADA FORTE";
+    if(nome === 'Semanal') {
+        document.getElementById('plano-semanal').classList.add('active');
     } else {
-        sElement.innerHTML = `AGUARDE PADRÃO...`;
-        pFill.style.width = "30%";
-        pFill.style.backgroundColor = "#ff9800";
-        tElement.innerText = "MERCADO EM RISCO";
+        document.getElementById('plano-mensal').classList.add('active');
     }
+}
 
-    // Atualiza a lista visual
-    lista.innerHTML = historico.slice().reverse().map(h => 
-        `<span class="badge" style="color:${h >= 2 ? '#4caf50' : '#e91e63'}">${h.toFixed(2)}x</span>`
-    ).join('');
+// Inicia com o plano semanal selecionado por padrão
+window.onload = () => selecionarPlano('Semanal', 100);
+
+function enviarPedidoWhatsapp() {
+    const numCliente = document.getElementById('num_cliente').value;
+    const plano = document.getElementById('plano_escolhido').value;
+    const valor = document.getElementById('valor_escolhido').value;
+
+    if (numCliente.length < 9) return alert("Por favor, coloque seu número.");
+
+    const msg = `Olá! Quero o plano *${plano.toUpperCase()}*.%0A%0A*Detalhes:*%0A- Valor: ${valor} MT%0A- Cliente: ${numCliente}%0A%0AConfirmem o depósito para me enviarem a senha!`;
+    
+    window.open(`https://wa.me/258872343542?text=${msg}`, '_blank');
 }
