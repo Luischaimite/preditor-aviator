@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Aviator Pro</title>
+    <title>Painel VIP - Aviator Pro</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        // Proteção: Se não logou, volta para o login
         if (localStorage.getItem('acesso_liberado') !== 'true') {
             window.location.href = "./login.html";
         }
@@ -15,25 +14,25 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>PAINEL DE SINAIS</h2>
+            <h3>SINAIS EM TEMPO REAL</h3>
             <button onclick="fazerLogout()" class="btn-logout">Sair</button>
         </div>
 
         <div class="card main-card">
             <div id="status-box">
                 <p>STATUS DO MERCADO:</p>
-                <h3 id="sinal">AGUARDANDO DADOS...</h3>
-                <p>TENDÊNCIA: <span id="tendencia">---</span></p>
+                <h2 id="sinal">AGUARDANDO DADOS...</h2>
+                <p>TENDÊNCIA: <span id="tendencia">ANALISANDO</span></p>
             </div>
-
             <div class="progress-container">
-                <div id="prob-fill" style="width: 0%"></div>
+                <div id="prob-fill" style="width: 10%"></div>
             </div>
         </div>
 
         <div class="card input-card">
-            <input type="number" id="valor" step="0.01" placeholder="Último Multiplicador (Ex: 1.50)">
-            <button onclick="adicionarDado()">ANALISAR</button>
+            <label>Último resultado do jogo:</label>
+            <input type="number" id="valor" step="0.01" placeholder="Ex: 1.45">
+            <button onclick="adicionarDado()" style="background:#2196f3; color:white;">ANALISAR VELA</button>
         </div>
 
         <div class="card history-card">

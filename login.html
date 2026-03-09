@@ -1,76 +1,49 @@
-<div class="card login-box">
-    <h1 class="pro">AVIATOR <span style="color:#e91e63">PRO</span></h1>
-    <p>Escolha o seu plano de acesso:</p>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso VIP - Aviator Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card login-box">
+            <h1 class="pro">AVIATOR <span style="color:#e91e63">PRO</span></h1>
+            <p>Escolha o seu plano de acesso:</p>
 
-    <div class="planos-container">
-        <div class="plano-card" onclick="selecionarPlano('Semanal', 100)" id="plano-semanal">
-            <h3>SEMANAL</h3>
-            <p class="preco">100 MT</p>
-            <span>7 Dias de Acesso</span>
-        </div>
+            <div class="planos-container">
+                <div class="plano-card active" onclick="selecionarPlano('Semanal', 100)" id="plano-semanal">
+                    <h3>SEMANAL</h3>
+                    <p class="preco">100 MT</p>
+                    <span>7 Dias</span>
+                </div>
+                <div class="plano-card" onclick="selecionarPlano('Mensal', 300)" id="plano-mensal">
+                    <h3>MENSAL</h3>
+                    <p class="preco">300 MT</p>
+                    <span>30 Dias</span>
+                </div>
+            </div>
 
-        <div class="plano-card" onclick="selecionarPlano('Mensal', 300)" id="plano-mensal">
-            <h3>MENSAL</h3>
-            <p class="preco">300 MT</p>
-            <span>30 Dias + Bónus</span>
-        </div>
-    </div>
+            <input type="hidden" id="plano_escolhido" value="Semanal">
+            <input type="hidden" id="valor_escolhido" value="100">
 
-    <input type="hidden" id="plano_escolhido" value="Semanal">
-    <input type="hidden" id="valor_escolhido" value="100">
+            <div class="input-group">
+                <label>Seu Número (M-Pesa/e-Mola):</label>
+                <input type="number" id="num_cliente" placeholder="87XXXXXXX">
+            </div>
 
-    <div class="input-group">
-        <label>Teu Número:</label>
-        <input type="number" id="num_cliente" placeholder="86/87XXXXXXX">
-    </div>
-
-    <button class="btn-whatsapp" onclick="enviarPedidoWhatsapp()">
-        PAGAR VIA WHATSAPP
-    </button>
-    
-    <hr style="border: 0.5px solid #333; margin: 20px 0;">
-    
-    <div class="input-group">
-        <label>Já tem a senha?</label>
-        <input type="text" id="chave_acesso" placeholder="Introduza a Chave VIP">
-        <button class="btn-acessar" onclick="verificarSenhaManual()">LIBERAR PREDITOR</button>
-    </div>
-</div>
-<div class="card login-box">
-    <h1 class="pro">AVIATOR <span style="color:#e91e63">PRO</span></h1>
-    <p>Escolha o seu plano de acesso:</p>
-
-    <div class="planos-container">
-        <div class="plano-card" onclick="selecionarPlano('Semanal', 100)" id="plano-semanal">
-            <h3>SEMANAL</h3>
-            <p class="preco">100 MT</p>
-            <span>7 Dias de Acesso</span>
-        </div>
-
-        <div class="plano-card" onclick="selecionarPlano('Mensal', 300)" id="plano-mensal">
-            <h3>MENSAL</h3>
-            <p class="preco">300 MT</p>
-            <span>30 Dias + Bónus</span>
+            <button class="btn-whatsapp" onclick="enviarPedidoWhatsapp()">PAGAR VIA WHATSAPP</button>
+            
+            <hr style="border: 0.5px solid #333; margin: 20px 0;">
+            
+            <div class="input-group">
+                <label>Já tem a senha?</label>
+                <input type="text" id="chave_acesso" placeholder="Introduza a Chave VIP">
+                <button class="btn-acessar" onclick="verificarSenhaManual()">LIBERAR PREDITOR</button>
+            </div>
         </div>
     </div>
-
-    <input type="hidden" id="plano_escolhido" value="Semanal">
-    <input type="hidden" id="valor_escolhido" value="100">
-
-    <div class="input-group">
-        <label>Teu Número:</label>
-        <input type="number" id="num_cliente" placeholder="86/87XXXXXXX">
-    </div>
-
-    <button class="btn-whatsapp" onclick="enviarPedidoWhatsapp()">
-        PAGAR VIA WHATSAPP
-    </button>
-    
-    <hr style="border: 0.5px solid #333; margin: 20px 0;">
-    
-    <div class="input-group">
-        <label>Já tem a senha?</label>
-        <input type="text" id="chave_acesso" placeholder="Introduza a Chave VIP">
-        <button class="btn-acessar" onclick="verificarSenhaManual()">LIBERAR PREDITOR</button>
-    </div>
-</div>
+    <script src="script.js"></script>
+</body>
+</html>
