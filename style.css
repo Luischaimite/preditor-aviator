@@ -1,54 +1,21 @@
-body {
-    background-color: #0d1117;
-    color: white;
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0; padding: 20px;
+.planos-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
 }
-.container { max-width: 400px; margin: auto; }
-.card {
-    background: #161b22;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 15px;
-    border: 1px solid #30363d;
-    text-align: center;
-}
-input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 1px solid #30363d;
+.plano-card {
+    flex: 1;
     background: #0d1117;
-    color: white;
-    box-sizing: border-box;
-}
-button {
-    width: 100%;
-    padding: 15px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
+    border: 2px solid #30363d;
+    border-radius: 10px;
+    padding: 15px 5px;
     cursor: pointer;
     transition: 0.3s;
 }
-.btn-whatsapp { background: #25d366; color: white; }
-.btn-acessar { background: #e91e63; color: white; margin-top: 10px; }
-.btn-logout { width: auto; padding: 5px 15px; background: #30363d; color: #8b949e; font-size: 12px; }
-#status-box { margin-bottom: 20px; }
-.progress-container {
-    background: #30363d;
-    height: 10px;
-    border-radius: 5px;
-    overflow: hidden;
+.plano-card.active {
+    border-color: #e91e63;
+    background: #1c2128;
 }
-#prob-fill { height: 100%; transition: 1s; }
-.badge {
-    display: inline-block;
-    padding: 5px 10px;
-    margin: 3px;
-    background: #21262d;
-    border-radius: 5px;
-    font-size: 12px;
-}
-.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.plano-card h3 { font-size: 14px; margin: 0; color: #8b949e; }
+.plano-card .preco { font-size: 18px; font-weight: bold; margin: 5px 0; color: white; }
+.plano-card span { font-size: 10px; color: #58a6ff; }
