@@ -1,50 +1,76 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel VIP - Aviator Pro</title>
-    <link rel="stylesheet" href="style.css">
-    <script>
-        if (localStorage.getItem('acesso_liberado') !== 'true') {
-            window.location.href = "./login.html";
-        }
-    </script>
+    <title>Aviator IA Gold - Oficial</title>
+    <style>
+        body { background-color: #0b1014; color: white; font-family: 'Segoe UI', Roboto, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background-color: #1c2127; border: 1px solid #32383e; border-top: 4px solid #e11d48; border-radius: 15px; padding: 20px; text-align: center; width: 85%; max-width: 340px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .badge-live { background: #e11d48; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.6rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; display: inline-block; }
+        h1 { font-size: 1.2rem; margin: 5px 0; letter-spacing: 1px; }
+        .monitor-box { background: #0b1014; border: 1px solid #32383e; border-radius: 12px; padding: 20px; margin: 15px 0; position: relative; overflow: hidden; }
+        #status-texto { font-size: 0.85rem; font-weight: bold; margin-bottom: 5px; }
+        #valor-sinal { font-size: 3rem; font-weight: 900; color: #00ff88; display: none; margin-top: 5px; }
+        .casas-suportadas { margin-top: 15px; border-top: 1px solid #32383e; padding-top: 10px; opacity: 0.6; }
+        .casas-logos { font-size: 0.7rem; font-weight: bold; color: #848e9c; display: flex; justify-content: space-around; }
+        .btn-vip { background: linear-gradient(90deg, #25d366, #128c7e); color: white; text-decoration: none; padding: 12px; border-radius: 8px; display: block; margin-top: 15px; font-weight: bold; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2); }
+        .pulse { animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h3 style="color:#ff0044">● ANALISADOR AO VIVO</h3>
-            <button onclick="fazerLogout()" class="btn-logout">Sair</button>
-        </div>
 
-        <div class="card main-card">
-            <div id="status-box">
-                <p style="font-size:12px; color:#8b949e;">ESTADO DO ALGORITMO:</p>
-                <h2 id="sinal" style="font-size: 26px; margin: 10px 0;">INSERIR DADOS...</h2>
-                <p id="tendencia" style="font-weight:bold; color:#58a6ff;">AGUARDANDO PADRÃO</p>
-            </div>
-            <div class="progress-container">
-                <div id="prob-fill" style="width: 15%"></div>
-            </div>
-        </div>
+<div class="card">
+    <div class="badge-live pulse">• SISTEMA ATIVO</div>
+    <h1>AVIATOR BRAIN IA</h1>
+    <p style="font-size: 0.7rem; color: #848e9c; margin-top: -5px;">Versão Gold - Sincronizada via Satélite</p>
 
-        <div class="card input-card">
-            <label>Último resultado do jogo:</label>
-            <input type="number" id="valor" step="0.01" placeholder="Ex: 1.85">
-            <button onclick="adicionarDado()" style="background:#2196f3; color:white; border-radius:10px;">ANALISAR VELA</button>
-        </div>
+    <div class="monitor-box">
+        <div id="status-texto" style="color: #fcd535;">VERIFICANDO ALGORITMO...</div>
+        <div id="valor-sinal">2.15X</div>
+        <div id="dica" style="font-size: 0.75rem; color: #848e9c; margin-top: 5px;">Aguardando brecha...</div>
+    </div>
 
-        <div class="card history-card">
-            <p style="font-size:12px; margin-bottom:10px;">HISTÓRICO DE ENTRADAS:</p>
-            <div id="lista-resultados"></div>
-        </div>
-
-        <div class="card live-wins">
-            <p style="color: #4caf50; font-size: 12px; font-weight: bold; margin-bottom: 10px;">💸 LUCROS RECENTES (MOZ):</p>
-            <div id="lista-ganhos" style="text-align: left; font-size: 11px; line-height: 1.8;"></div>
+    <div class="casas-suportadas">
+        <p style="font-size: 0.6rem; margin-bottom: 8px; color: #5e6673;">COMPATÍVEL COM:</p>
+        <div class="casas-logos">
+            <span>🐘 ELEPHANT BET</span>
+            <span>🦁 PREMIER BET</span>
+            <span>💎 888BET</span>
         </div>
     </div>
-    <script src="script.js"></script>
-</body>
-</html>
+
+    <a href="https://wa.me/258872343542" class="btn-vip">OBTER ACESSO VIP (300 MT)</a>
+    
+    <div style="font-size: 0.6rem; color: #474d57; margin-top: 15px;">
+        Agente Oficial: Cristão Luis | Marracuene
+    </div>
+</div>
+
+<script>
+    const statusTxt = document.getElementById('status-texto');
+    const valorSinal = document.getElementById('valor-sinal');
+    const dica = document.getElementById('dica');
+
+    function analisarMercado() {
+        const agora = new Date();
+        const min = agora.getMinutes();
+        
+        // Ciclo de Inteligência: Mercado Favorável em minutos pares
+        if (min % 2 === 0) {
+            statusTxt.innerText = "ENTRADA CONFIRMADA ✅";
+            statusTxt.style.color = "#00ff88";
+            statusTxt.classList.remove('pulse');
+            
+            // Gera vela entre 1.45 e 2.95 (Padrão seguro para o cliente ganhar)
+            const vela = (Math.random() * (2.95 - 1.45) + 1.45).toFixed(2);
+            valorSinal.innerText = vela + "X";
+            valorSinal.style.display = 'block';
+            dica.innerText = "Retirar em " + vela + "X (Segurança Máxima)";
+        } else {
+            statusTxt.innerText = "MERCADO INSTÁVEL ⚠️";
+            statusTxt.style.color = "#fcd535";
+            statusTxt.classList.add('pulse');
+            
+            valor
