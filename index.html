@@ -3,101 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviator Predictor PRO - Manual</title>
+    <title>Aviator Predictor PRO - Cristão Luis</title>
     <style>
         body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .container { text-align: center; width: 90%; max-width: 380px; }
+        .card { background-color: #121212; border: 1px solid #333; border-radius: 20px; padding: 25px; text-align: center; width: 90%; max-width: 360px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
         
-        /* O Círculo das Fotos */
-        .circle-container { position: relative; width: 200px; height: 200px; margin: 0 auto 20px; display: flex; justify-content: center; align-items: center; }
+        /* LOGIN */
+        #tela-login { display: block; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid #444; background: #000; color: white; text-align: center; box-sizing: border-box; font-size: 1rem; }
+        .btn-entrar { background: #e11d48; color: white; border: none; width: 100%; padding: 14px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        
+        /* PREDICTOR */
+        #painel-predictor { display: none; }
+        .circle-container { position: relative; width: 180px; height: 180px; margin: 20px auto; display: flex; justify-content: center; align-items: center; }
         .outer-circle { position: absolute; width: 100%; height: 100%; border: 6px solid #1a1a1a; border-radius: 50%; border-top-color: #e11d48; }
         .animar { animation: rotate 1s linear infinite; }
-        
-        #valor-sinal { font-size: 3rem; font-weight: 900; color: #e11d48; text-shadow: 0 0 15px rgba(225,29,72,0.5); }
-        .rosa { color: #ff00ff !important; text-shadow: 0 0 25px #ff00ff !important; }
+        #valor-sinal { font-size: 2.8rem; font-weight: 900; color: #e11d48; }
+        .rosa { color: #ff00ff !important; text-shadow: 0 0 20px #ff00ff; }
 
-        /* Input de Entrada */
-        .input-box { margin-bottom: 20px; }
-        input { background: #1a1a1a; border: 1px solid #333; color: white; padding: 12px; width: 80%; border-radius: 8px; text-align: center; font-size: 1.1rem; outline: none; }
-        input:focus { border-color: #e11d48; }
-
-        .btn-next { background: linear-gradient(to right, #e11d48, #991b1b); color: white; border: none; padding: 15px 50px; border-radius: 10px; font-weight: bold; font-size: 1.1rem; text-transform: uppercase; cursor: pointer; width: 85%; }
+        .btn-acao { background: linear-gradient(to right, #e11d48, #991b1b); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; text-transform: uppercase; cursor: pointer; }
+        .btn-whats { background: #25d366; color: white; text-decoration: none; padding: 10px; border-radius: 8px; display: block; margin-top: 20px; font-size: 0.8rem; font-weight: bold; }
         
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .footer { font-size: 0.7rem; color: #444; margin-top: 25px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <img src="https://i.imgur.com/uG9X3yO.png" style="width: 80px; margin-bottom: 10px;" alt="Avião">
-    <h2 style="font-size: 1rem; color: #848e9c; letter-spacing: 2px;">AVIATOR PREDICTOR</h2>
+<div class="card" id="tela-login">
+    <h2 style="color: #e11d48; margin-bottom: 5px;">ACESSO VIP</h2>
+    <p style="font-size: 0.8rem; color: #848e9c;">Digite a sua chave de acesso</p>
+    <input type="password" id="input-senha" placeholder="CHAVE DO AGENTE">
+    <button class="btn-entrar" onclick="verificar()">LIBERAR PREDICTOR</button>
+    <a href="https://wa.me/258872343542?text=Quero+comprar+a+chave+do+Predictor" class="btn-whats">COMPRAR ACESSO (300 MT)</a>
+</div>
 
+<div class="card" id="painel-predictor">
+    <h3 style="font-size: 0.9rem; color: #848e9c; letter-spacing: 2px;">AVIATOR PREDICTOR PRO</h3>
+    
     <div class="circle-container">
-        <div class="outer-circle" id="border"></div>
+        <div class="outer-circle" id="borda"></div>
         <div id="valor-sinal">0.00x</div>
     </div>
 
-    <div class="input-box">
-        <p style="font-size: 0.8rem; color: #fcd535;">Digite a última vela da Elephant Bet:</p>
-        <input type="number" id="vela-atual" placeholder="Ex: 1.50" step="0.01">
+    <div style="margin-bottom: 20px;">
+        <p style="font-size: 0.75rem; color: #fcd535; margin-bottom: 5px;">Última vela da Elephant Bet:</p>
+        <input type="number" id="vela-entrada" placeholder="Ex: 1.85" step="0.01">
     </div>
 
-    <button class="btn-next" onclick="gerarPrevisao()">OBTER SINAL</button>
+    <button class="btn-acao" onclick="prever()">GERAR PRÓXIMA VELA</button>
     
-    <div class="footer">AGENTE: CRISTÃO LUIS | 872343542</div>
+    <div style="font-size: 0.6rem; color: #444; margin-top: 20px;">
+        Agente Oficial: Cristão Luis | 872343542
+    </div>
 </div>
 
 <script>
-    function gerarPrevisao() {
-        const inputVela = document.getElementById('vela-atual');
-        const display = document.getElementById('valor-sinal');
-        const border = document.getElementById('border');
-        
-        if (inputVela.value === "") {
-            alert("Por favor, digite a última vela!");
-            return;
-        }
+    const CHAVE = "VIP2026";
 
-        // Inicia animação de "Processando"
+    function verificar() {
+        if(document.getElementById('input-senha').value === CHAVE) {
+            document.getElementById('tela-login').style.display = 'none';
+            document.getElementById('painel-predictor').style.display = 'block';
+        } else {
+            alert("Senha incorreta! Contacte o Agente.");
+        }
+    }
+
+    function prever() {
+        const entrada = document.getElementById('vela-entrada');
+        const display = document.getElementById('valor-sinal');
+        const borda = document.getElementById('borda');
+
+        if(!entrada.value) { alert("Digite a última vela!"); return; }
+
         display.innerText = "---";
+        borda.classList.add('animar');
         display.classList.remove('rosa');
-        border.classList.add('animar');
-        border.style.borderTopColor = "#e11d48";
+        borda.style.borderTopColor = "#e11d48";
 
         setTimeout(() => {
-            border.classList.remove('animar');
-            const velaDigitada = parseFloat(inputVela.value);
-            let proximaVela;
+            borda.classList.remove('animar');
+            let res;
+            const v = parseFloat(entrada.value);
 
-            // LÓGICA DE PREVISÃO (Simulada para parecer real)
-            if (velaDigitada < 2.0) {
-                // Se a última foi baixa, a próxima tem chance de ser ROXA
-                proximaVela = (Math.random() * (4.5 - 2.1) + 2.1).toFixed(2);
-            } else if (velaDigitada >= 2.0 && velaDigitada < 10) {
-                // Se a última foi média, gera uma variada
-                proximaVela = (Math.random() * (2.5 - 1.2) + 1.2).toFixed(2);
-            } else {
-                // Se a última foi ROSA, a próxima costuma ser baixa (azuis)
-                proximaVela = (Math.random() * (1.8 - 1.0) + 1.0).toFixed(2);
-            }
+            // Lógica de "Previsão"
+            if (v < 1.5) res = (Math.random() * (3.5 - 2.0) + 2.0).toFixed(2);
+            else if (v >= 10) res = (Math.random() * (1.9 - 1.1) + 1.1).toFixed(2);
+            else res = (Math.random() * (2.5 - 1.1) + 1.1).toFixed(2);
 
-            // SORTEIO DE VELA ROSA (5% de chance de forçar uma rosa no sinal)
-            if (Math.random() > 0.95) {
-                proximaVela = (Math.random() * (25.0 - 10.0) + 10.0).toFixed(2);
-            }
-
-            // Mostrar o resultado
-            display.innerText = proximaVela + "x";
-            
-            // Se for sinal ROSA (Acima de 10)
-            if (parseFloat(proximaVela) >= 10.0) {
+            // Chance de Vela Rosa (acima de 10x)
+            if (Math.random() > 0.93) {
+                res = (Math.random() * (35.0 - 10.0) + 10.0).toFixed(2);
                 display.classList.add('rosa');
-                border.style.borderTopColor = "#ff00ff";
+                borda.style.borderTopColor = "#ff00ff";
             }
 
-            inputVela.value = ""; // Limpa o campo para a próxima
-        }, 2000); // 2 segundos de "Análise"
+            display.innerText = res + "x";
+            entrada.value = "";
+        }, 1500);
     }
 </script>
 
