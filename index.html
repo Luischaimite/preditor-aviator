@@ -3,74 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviator IA Gold - Oficial</title>
+    <title>Aviator IA Gold - Acesso Restrito</title>
     <style>
-        body { background-color: #0b1014; color: white; font-family: 'Segoe UI', Roboto, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background-color: #1c2127; border: 1px solid #32383e; border-top: 4px solid #e11d48; border-radius: 15px; padding: 20px; text-align: center; width: 85%; max-width: 340px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        body { background-color: #0b1014; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background-color: #1c2127; border: 1px solid #32383e; border-top: 4px solid #e11d48; border-radius: 15px; padding: 25px; text-align: center; width: 85%; max-width: 340px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        /* Estilo da Tela de Login */
+        #tela-login { display: block; }
+        input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid #474d57; background: #0b1014; color: white; text-align: center; box-sizing: border-box; }
+        .btn-entrar { background: #e11d48; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        
+        /* Estilo do Painel de Sinais (Escondido no início) */
+        #painel-sinais { display: none; }
         .badge-live { background: #e11d48; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.6rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; display: inline-block; }
-        h1 { font-size: 1.2rem; margin: 5px 0; letter-spacing: 1px; }
-        .monitor-box { background: #0b1014; border: 1px solid #32383e; border-radius: 12px; padding: 20px; margin: 15px 0; position: relative; overflow: hidden; }
-        #status-texto { font-size: 0.85rem; font-weight: bold; margin-bottom: 5px; }
-        #valor-sinal { font-size: 3rem; font-weight: 900; color: #00ff88; display: none; margin-top: 5px; }
-        .casas-suportadas { margin-top: 15px; border-top: 1px solid #32383e; padding-top: 10px; opacity: 0.6; }
-        .casas-logos { font-size: 0.7rem; font-weight: bold; color: #848e9c; display: flex; justify-content: space-around; }
-        .btn-vip { background: linear-gradient(90deg, #25d366, #128c7e); color: white; text-decoration: none; padding: 12px; border-radius: 8px; display: block; margin-top: 15px; font-weight: bold; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2); }
+        .monitor-box { background: #0b1014; border: 1px solid #32383e; border-radius: 12px; padding: 20px; margin: 15px 0; }
+        #valor-sinal { font-size: 3rem; font-weight: 900; color: #00ff88; margin-top: 5px; }
+        
+        .btn-comprar { background: #25d366; color: white; text-decoration: none; padding: 10px; border-radius: 8px; display: block; margin-top: 15px; font-size: 0.8rem; font-weight: bold; }
         .pulse { animation: blink 1.5s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     </style>
 </head>
 <body>
 
-<div class="card">
+<div class="card" id="tela-login">
+    <h2 style="color: #e11d48;">ACESSO RESTRITO</h2>
+    <p style="font-size: 0.8rem; color: #848e9c;">Introduza a sua Chave VIP para ver os sinais em tempo real.</p>
+    
+    <input type="password" id="input-senha" placeholder="Digite a Senha">
+    <button class="btn-entrar" onclick="verificarAcesso()">LIBERAR ACESSO</button>
+    
+    <p style="font-size: 0.7rem; margin-top: 20px;">Não tem uma chave?</p>
+    <a href="https://wa.me/258872343542?text=Olá+Cristão,+quero+comprar+a+chave+do+Aviator" class="btn-comprar">COMPRAR CHAVE (300 MT)</a>
+</div>
+
+<div class="card" id="painel-sinais">
     <div class="badge-live pulse">• SISTEMA ATIVO</div>
     <h1>AVIATOR BRAIN IA</h1>
-    <p style="font-size: 0.7rem; color: #848e9c; margin-top: -5px;">Versão Gold - Sincronizada via Satélite</p>
-
+    
     <div class="monitor-box">
-        <div id="status-texto" style="color: #fcd535;">VERIFICANDO ALGORITMO...</div>
-        <div id="valor-sinal">2.15X</div>
+        <div id="status-texto" style="color: #fcd535; font-weight: bold;">ANALISANDO...</div>
+        <div id="valor-sinal">--</div>
         <div id="dica" style="font-size: 0.75rem; color: #848e9c; margin-top: 5px;">Aguardando brecha...</div>
     </div>
 
-    <div class="casas-suportadas">
-        <p style="font-size: 0.6rem; margin-bottom: 8px; color: #5e6673;">COMPATÍVEL COM:</p>
-        <div class="casas-logos">
-            <span>🐘 ELEPHANT BET</span>
-            <span>🦁 PREMIER BET</span>
-            <span>💎 888BET</span>
-        </div>
-    </div>
-
-    <a href="https://wa.me/258872343542" class="btn-vip">OBTER ACESSO VIP (300 MT)</a>
-    
     <div style="font-size: 0.6rem; color: #474d57; margin-top: 15px;">
-        Agente Oficial: Cristão Luis | Marracuene
+        Agente: Cristão Luis | Marracuene
     </div>
 </div>
 
 <script>
-    const statusTxt = document.getElementById('status-texto');
-    const valorSinal = document.getElementById('valor-sinal');
-    const dica = document.getElementById('dica');
+    // DEFINE A TUA SENHA AQUI
+    const SENHA_CORRETA = "VIP2026";
 
-    function analisarMercado() {
-        const agora = new Date();
-        const min = agora.getMinutes();
+    function verificarAcesso() {
+        const senhaDigitada = document.getElementById('input-senha').value;
         
-        // Ciclo de Inteligência: Mercado Favorável em minutos pares
-        if (min % 2 === 0) {
-            statusTxt.innerText = "ENTRADA CONFIRMADA ✅";
-            statusTxt.style.color = "#00ff88";
-            statusTxt.classList.remove('pulse');
-            
-            // Gera vela entre 1.45 e 2.95 (Padrão seguro para o cliente ganhar)
-            const vela = (Math.random() * (2.95 - 1.45) + 1.45).toFixed(2);
-            valorSinal.innerText = vela + "X";
-            valorSinal.style.display = 'block';
-            dica.innerText = "Retirar em " + vela + "X (Segurança Máxima)";
+        if (senhaDigitada === SENHA_CORRETA) {
+            document.getElementById('tela-login').style.display = 'none';
+            document.getElementById('painel-sinais').style.display = 'block';
+            iniciarIA();
         } else {
-            statusTxt.innerText = "MERCADO INSTÁVEL ⚠️";
-            statusTxt.style.color = "#fcd535";
-            statusTxt.classList.add('pulse');
-            
-            valor
+            alert("Chave de acesso incorreta! Fale com o Agente Cristão.");
+        }
+    }
+
+    function iniciarIA() {
+        const statusTxt = document.getElementById('status-texto');
+        const valorSinal = document.getElementById('valor-sinal');
+        const dica = document.getElementById('dica');
+
+        function analisar() {
+            const min = new Date().getMinutes();
+            if (min % 2 === 0) {
+                statusTxt.innerText = "ENTRADA CONFIRMADA ✅";
+                statusTxt.style.color = "#00ff88";
+                const vela = (Math.random() * (2.85 - 1.40) + 1.40).toFixed(2);
+                valorSinal.innerText = vela + "X";
+                valorSinal.style.display = 'block';
+                dica.innerText = "Retirar em " + vela + "X";
+            } else {
+                statusTxt.innerText = "MERCADO INSTÁVEL ⚠️";
+                statusTxt.style.color = "#fcd535";
+                valorSinal.style.display = 'none';
+                dica.innerText = "Padrão de risco detectado.";
+            }
+        }
+        setInterval(analisar, 10000);
+        analisar();
+    }
+</script>
+
+</body>
+</html>
