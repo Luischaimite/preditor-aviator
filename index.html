@@ -3,94 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviator IA Gold - Acesso Restrito</title>
+    <title>Aviator Predictor PRO - Manual</title>
     <style>
-        body { background-color: #0b1014; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background-color: #1c2127; border: 1px solid #32383e; border-top: 4px solid #e11d48; border-radius: 15px; padding: 25px; text-align: center; width: 85%; max-width: 340px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        body { background-color: #000; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { text-align: center; width: 90%; max-width: 380px; }
         
-        /* Estilo da Tela de Login */
-        #tela-login { display: block; }
-        input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid #474d57; background: #0b1014; color: white; text-align: center; box-sizing: border-box; }
-        .btn-entrar { background: #e11d48; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        /* O Círculo das Fotos */
+        .circle-container { position: relative; width: 200px; height: 200px; margin: 0 auto 20px; display: flex; justify-content: center; align-items: center; }
+        .outer-circle { position: absolute; width: 100%; height: 100%; border: 6px solid #1a1a1a; border-radius: 50%; border-top-color: #e11d48; }
+        .animar { animation: rotate 1s linear infinite; }
         
-        /* Estilo do Painel de Sinais (Escondido no início) */
-        #painel-sinais { display: none; }
-        .badge-live { background: #e11d48; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.6rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; display: inline-block; }
-        .monitor-box { background: #0b1014; border: 1px solid #32383e; border-radius: 12px; padding: 20px; margin: 15px 0; }
-        #valor-sinal { font-size: 3rem; font-weight: 900; color: #00ff88; margin-top: 5px; }
+        #valor-sinal { font-size: 3rem; font-weight: 900; color: #e11d48; text-shadow: 0 0 15px rgba(225,29,72,0.5); }
+        .rosa { color: #ff00ff !important; text-shadow: 0 0 25px #ff00ff !important; }
+
+        /* Input de Entrada */
+        .input-box { margin-bottom: 20px; }
+        input { background: #1a1a1a; border: 1px solid #333; color: white; padding: 12px; width: 80%; border-radius: 8px; text-align: center; font-size: 1.1rem; outline: none; }
+        input:focus { border-color: #e11d48; }
+
+        .btn-next { background: linear-gradient(to right, #e11d48, #991b1b); color: white; border: none; padding: 15px 50px; border-radius: 10px; font-weight: bold; font-size: 1.1rem; text-transform: uppercase; cursor: pointer; width: 85%; }
         
-        .btn-comprar { background: #25d366; color: white; text-decoration: none; padding: 10px; border-radius: 8px; display: block; margin-top: 15px; font-size: 0.8rem; font-weight: bold; }
-        .pulse { animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .footer { font-size: 0.7rem; color: #444; margin-top: 25px; }
     </style>
 </head>
 <body>
 
-<div class="card" id="tela-login">
-    <h2 style="color: #e11d48;">ACESSO RESTRITO</h2>
-    <p style="font-size: 0.8rem; color: #848e9c;">Introduza a sua Chave VIP para ver os sinais em tempo real.</p>
-    
-    <input type="password" id="input-senha" placeholder="Digite a Senha">
-    <button class="btn-entrar" onclick="verificarAcesso()">LIBERAR ACESSO</button>
-    
-    <p style="font-size: 0.7rem; margin-top: 20px;">Não tem uma chave?</p>
-    <a href="https://wa.me/258872343542?text=Olá+Cristão,+quero+comprar+a+chave+do+Aviator" class="btn-comprar">COMPRAR CHAVE (300 MT)</a>
-</div>
+<div class="container">
+    <img src="https://i.imgur.com/uG9X3yO.png" style="width: 80px; margin-bottom: 10px;" alt="Avião">
+    <h2 style="font-size: 1rem; color: #848e9c; letter-spacing: 2px;">AVIATOR PREDICTOR</h2>
 
-<div class="card" id="painel-sinais">
-    <div class="badge-live pulse">• SISTEMA ATIVO</div>
-    <h1>AVIATOR BRAIN IA</h1>
-    
-    <div class="monitor-box">
-        <div id="status-texto" style="color: #fcd535; font-weight: bold;">ANALISANDO...</div>
-        <div id="valor-sinal">--</div>
-        <div id="dica" style="font-size: 0.75rem; color: #848e9c; margin-top: 5px;">Aguardando brecha...</div>
+    <div class="circle-container">
+        <div class="outer-circle" id="border"></div>
+        <div id="valor-sinal">0.00x</div>
     </div>
 
-    <div style="font-size: 0.6rem; color: #474d57; margin-top: 15px;">
-        Agente: Cristão Luis | Marracuene
+    <div class="input-box">
+        <p style="font-size: 0.8rem; color: #fcd535;">Digite a última vela da Elephant Bet:</p>
+        <input type="number" id="vela-atual" placeholder="Ex: 1.50" step="0.01">
     </div>
+
+    <button class="btn-next" onclick="gerarPrevisao()">OBTER SINAL</button>
+    
+    <div class="footer">AGENTE: CRISTÃO LUIS | 872343542</div>
 </div>
 
 <script>
-    // DEFINE A TUA SENHA AQUI
-    const SENHA_CORRETA = "VIP2026";
-
-    function verificarAcesso() {
-        const senhaDigitada = document.getElementById('input-senha').value;
+    function gerarPrevisao() {
+        const inputVela = document.getElementById('vela-atual');
+        const display = document.getElementById('valor-sinal');
+        const border = document.getElementById('border');
         
-        if (senhaDigitada === SENHA_CORRETA) {
-            document.getElementById('tela-login').style.display = 'none';
-            document.getElementById('painel-sinais').style.display = 'block';
-            iniciarIA();
-        } else {
-            alert("Chave de acesso incorreta! Fale com o Agente Cristão.");
+        if (inputVela.value === "") {
+            alert("Por favor, digite a última vela!");
+            return;
         }
-    }
 
-    function iniciarIA() {
-        const statusTxt = document.getElementById('status-texto');
-        const valorSinal = document.getElementById('valor-sinal');
-        const dica = document.getElementById('dica');
+        // Inicia animação de "Processando"
+        display.innerText = "---";
+        display.classList.remove('rosa');
+        border.classList.add('animar');
+        border.style.borderTopColor = "#e11d48";
 
-        function analisar() {
-            const min = new Date().getMinutes();
-            if (min % 2 === 0) {
-                statusTxt.innerText = "ENTRADA CONFIRMADA ✅";
-                statusTxt.style.color = "#00ff88";
-                const vela = (Math.random() * (2.85 - 1.40) + 1.40).toFixed(2);
-                valorSinal.innerText = vela + "X";
-                valorSinal.style.display = 'block';
-                dica.innerText = "Retirar em " + vela + "X";
+        setTimeout(() => {
+            border.classList.remove('animar');
+            const velaDigitada = parseFloat(inputVela.value);
+            let proximaVela;
+
+            // LÓGICA DE PREVISÃO (Simulada para parecer real)
+            if (velaDigitada < 2.0) {
+                // Se a última foi baixa, a próxima tem chance de ser ROXA
+                proximaVela = (Math.random() * (4.5 - 2.1) + 2.1).toFixed(2);
+            } else if (velaDigitada >= 2.0 && velaDigitada < 10) {
+                // Se a última foi média, gera uma variada
+                proximaVela = (Math.random() * (2.5 - 1.2) + 1.2).toFixed(2);
             } else {
-                statusTxt.innerText = "MERCADO INSTÁVEL ⚠️";
-                statusTxt.style.color = "#fcd535";
-                valorSinal.style.display = 'none';
-                dica.innerText = "Padrão de risco detectado.";
+                // Se a última foi ROSA, a próxima costuma ser baixa (azuis)
+                proximaVela = (Math.random() * (1.8 - 1.0) + 1.0).toFixed(2);
             }
-        }
-        setInterval(analisar, 10000);
-        analisar();
+
+            // SORTEIO DE VELA ROSA (5% de chance de forçar uma rosa no sinal)
+            if (Math.random() > 0.95) {
+                proximaVela = (Math.random() * (25.0 - 10.0) + 10.0).toFixed(2);
+            }
+
+            // Mostrar o resultado
+            display.innerText = proximaVela + "x";
+            
+            // Se for sinal ROSA (Acima de 10)
+            if (parseFloat(proximaVela) >= 10.0) {
+                display.classList.add('rosa');
+                border.style.borderTopColor = "#ff00ff";
+            }
+
+            inputVela.value = ""; // Limpa o campo para a próxima
+        }, 2000); // 2 segundos de "Análise"
     }
 </script>
 
